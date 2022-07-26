@@ -11,14 +11,15 @@ const entries = WebpackWatchedGlobEntries.getEntries([path.resolve(__dirname, '.
 })();
 
 const htmlGlobPlugins = (entries, srcPath) => {
-    return Object.keys(entries).map(
-        (key) =>
+    return Object.keys(entries).flatMap(
+        (key) => [
             new HtmlWebpackPlugin({
                 inject: 'body',
                 filename: `${key}.html`,
                 template: `${srcPath}/${key}.html`,
                 chunks: [key],
             })
+        ]
     );
 };
 
