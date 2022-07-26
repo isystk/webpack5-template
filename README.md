@@ -17,6 +17,10 @@ Webpack5 のサンプルアプリケーションです。
 - ESLint
 - Prettier 
 
+## 🌐 Demo
+https://isystk.github.io/webpack5-template/
+
+
 ## 📦 ディレクトリ構造
 ```
 .
