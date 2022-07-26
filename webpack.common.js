@@ -1,9 +1,8 @@
 const path = require('path');
+const webpack = require('webpack');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackWatchedGlobEntries = require('webpack-watched-glob-entries-plugin');
-
-// 追加
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const entries = WebpackWatchedGlobEntries.getEntries([path.resolve(__dirname, './src/ts/**/*.ts')], {
@@ -103,9 +102,13 @@ module.exports = (outputFile) => ({
         new CleanWebpackPlugin(),
         new WebpackWatchedGlobEntries(),
 
-        // 追加
         new MiniCssExtractPlugin({
             filename: `./css/${outputFile}.css`,
+        }),
+
+        new webpack.ProvidePlugin({
+           $: "jquery",
+           jQuery: "jquery"
         }),
 
         ...htmlGlobPlugins(entries, './src'),
